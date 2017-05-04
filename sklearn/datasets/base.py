@@ -572,10 +572,13 @@ def load_diabetes(return_X_y=False):
     data = np.loadtxt(join(base_dir, 'diabetes_data.csv.gz'))
     target = np.loadtxt(join(base_dir, 'diabetes_target.csv.gz'))
 
+    with open(join(module_path, 'descr', 'diabetes.rst')) as f:
+        descr = f.read()
+
     if return_X_y:
         return data, target
 
-    return Bunch(data=data, target=target,
+    return Bunch(DESCR=descr, data=data, target=target,
                  feature_names=['age', 'sex', 'bmi', 'bp',
                                 's1', 's2', 's3', 's4', 's5', 's6'])
 
